@@ -1,8 +1,39 @@
 import React from 'react';
-import './QuoteCard.css'
+import './QuoteCard.css';
 
 
+class QuoteCard extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            favorite: false,
+        };
+    }
+    render(){
+        return (
+            <figure className="QuoteCard">
+                <img src={this.props.image} alt={this.props.character} />
+                <figcaption>
+                    <blockquote>{this.props.quote}</blockquote>
+                    <p>
+                        <cite>{this.props.character}</cite>
+                        <span 
+                            className={this.state.favorite ? 'is-favorite' : ''}
+                            onClick = {event => {
+                                const newFavorite = !this.state.favorite;
+                                this.setState ({favorite: newFavorite});
+                            }}
+                        >
+                            &#9733;
+                        </span>
+                    </p>
+                </figcaption>
+            </figure>
+        );
+    }
+}
 
+export default QuoteCard;
 /*const QuoteCard = () => {
     return(
         <figure className = "QuoteCard">
@@ -18,12 +49,11 @@ import './QuoteCard.css'
     );
 
 }*/
-const QuoteCard = props => (
-    <div>
+/*const QuoteCard = props => (
+    <div className="QuoteCard">
         <img src={props.image} alt={props.cite}/>
         <h2>{props.quote} </h2>
         <h4>{props.cite}</h4>
     </div>
 );
-
-export default QuoteCard;
+*/
